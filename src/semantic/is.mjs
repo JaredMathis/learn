@@ -22,7 +22,7 @@ export function semantic_is(parsed, context) {
     inner = {};
     if (semantic_ternary(p2, 'and', inner)) {
         for_each(['0', '2'], i => {
-            semantic_context_subset(context, p0, inner['p' + i]);
+            semantic_context_subset(context, p0, list_single(inner['p' + i]));
         });
         return true;
     }
