@@ -1,3 +1,4 @@
+import { for_each } from './../../node_modules/m00/src/for/each.mjs';
 import { semantic_context_subset_for_each } from './context/subset/for/each.mjs';
 import { list_add } from './../../node_modules/m00/src/list/add.mjs';
 import { semantic_and } from './and.mjs';
@@ -6,6 +7,7 @@ import { defined_is } from './../../node_modules/m00/src/defined/is.mjs';
 import { arguments_assert } from './../../node_modules/m00/src/arguments/assert.mjs';
 import { list_is } from './../../node_modules/m00/src/list/is.mjs';
 import { semantic_ternary } from './ternary.mjs';
+import { for_each } from 'm00/src/for/each.mjs';
 export function semantic_is(parsed, context) {
     arguments_assert(arguments, list_is, defined_is);
     let inner = {};
@@ -22,14 +24,20 @@ export function semantic_is(parsed, context) {
         })) {
         subsets = [p0];
     }
+    let supersets = [];
     if (p2.length === 1) {
         p2 = list_single(p2);
+        list_add(supersets, p2);
         semantic_context_subset_for_each(context, subsets, p2);
-        return true;
     }
     if (semantic_and(p2, part => {
-            semantic_context_subset_for_each(context, subsets, list_single(part));
+            list_add(supersets, list_single(part));
         })) {
+    }
+    if (supersets.length) {
+        for_each(supersets, s => {
+            semantic_context_subset_for_each(context, subsets, s);
+        });
         return true;
     }
     return false;
