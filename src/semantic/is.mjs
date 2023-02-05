@@ -11,7 +11,11 @@ export function semantic_is(parsed, context) {
         return false;
     }
     let {p0,p2} = inner;
-    p2 = list_single(p2);
-    semantic_context_subset(context, list_single(p0), p2);
-    return true;
+    if (p2.length === 1) {
+        p2 = list_single(p2);
+        semantic_context_subset(context, list_single(p0), p2);
+        return true;
+    }
+
+    return false;
 }
