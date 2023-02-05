@@ -25,15 +25,11 @@ export function semantic_is(parsed, context) {
     }
     if (p2.length === 1) {
         p2 = list_single(p2);
-        for_each(subjects, s => {
-            semantic_context_subset(context, s, p2);
-        });
+            semantic_context_subset_for_each(context, subjects, p2);
         return true;
     }
     if (semantic_and(p2, part => {
-            for_each(subjects, s => {
-                semantic_context_subset(context, s, list_single(part));
-            });
+        semantic_context_subset_for_each(context, subjects, list_single(part));
         })) {
         return true;
     }
