@@ -16,19 +16,19 @@ export function semantic_is(parsed, context) {
         return false;
     }
     let {p0, p2} = inner;
-    let subjects = [];
+    let subsets = [];
     if (!semantic_and(p0, part => {
-            list_add(subjects, list_single(part));
+            list_add(subsets, list_single(part));
         })) {
-        subjects = [p0];
+        subsets = [p0];
     }
     if (p2.length === 1) {
         p2 = list_single(p2);
-        semantic_context_subset_for_each(context, subjects, p2);
+        semantic_context_subset_for_each(context, subsets, p2);
         return true;
     }
     if (semantic_and(p2, part => {
-            semantic_context_subset_for_each(context, subjects, list_single(part));
+            semantic_context_subset_for_each(context, subsets, list_single(part));
         })) {
         return true;
     }
