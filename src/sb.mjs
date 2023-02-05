@@ -1,10 +1,8 @@
+import { semantic_parse } from './semantic/parse.mjs';
 import { semantic_is } from './semantic/is.mjs';
-import { log } from './../node_modules/m00/src/log.mjs';
-import parser from 'paren';
 export function sb() {
     let parenthesized = `( Jared ) is ( human )`;
-    let parsed = parser(parenthesized, ' ');
+    let parsed = semantic_parse(parenthesized);
     let context = {};
     semantic_is(parsed, context);
-    log(context);
 }
