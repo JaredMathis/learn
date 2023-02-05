@@ -1,6 +1,10 @@
+import { arguments_assert } from './../../node_modules/m00/src/arguments/assert.mjs';
+import { string_is } from './../../node_modules/m00/src/string/is.mjs';
+import { defined_is } from './../../node_modules/m00/src/defined/is.mjs';
 import { list_is } from './../../node_modules/m00/src/list/is.mjs';
 import { merge } from './../../node_modules/m00/src/merge.mjs';
 export function semantic_ternary(parsed, middle, context) {
+    arguments_assert(arguments, list_is, string_is, defined_is);
     if (parsed.length !== 3) {
         return false;
     }
