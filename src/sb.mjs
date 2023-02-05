@@ -4,5 +4,7 @@ import parser from 'paren';
 export function sb() {
     let parenthesized = `( Jared ) is ( human )`;
     let parsed = parser(parenthesized, ' ');
-    log(semantic_is(parsed));
+    let context = {};
+    semantic_is(parsed, context);
+    log(context);
 }

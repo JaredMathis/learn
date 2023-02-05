@@ -18,5 +18,5 @@ export function semantic_is(parsed, context) {
     if (!list_is(p2)) {
         return false;
     }
-    semantic_context_subset(context, p0, p2);
+    semantic_context_subset(context, list_single(p0), list_single(p2));
 }
