@@ -1,3 +1,4 @@
+import { semantic_binary } from './binary.mjs';
 import { for_each } from './../../node_modules/m00/src/for/each.mjs';
 import { semantic_context_subset_for_each } from './context/subset/for/each.mjs';
 import { list_add } from './../../node_modules/m00/src/list/add.mjs';
@@ -29,6 +30,11 @@ export function semantic_is(parsed, context) {
     } else if (semantic_and(p2, part => {
             list_add(supersets, list_single(part));
         })) {
+    } else {
+        let inner = {};
+        if (semantic_binary(parsed, ['not'], inner)) {
+            list_add(supersets, inner.p0 + ' ' + inner.p1);
+        }
     }
     if (supersets.length) {
         for_each(supersets, s => {
