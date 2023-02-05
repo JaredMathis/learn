@@ -1,3 +1,5 @@
+import { defined_is } from './../../node_modules/m00/src/defined/is.mjs';
+import { semantic_context_subset } from './context/subset.mjs';
 import { arguments_assert } from './../../node_modules/m00/src/arguments/assert.mjs';
 import { list_is } from './../../node_modules/m00/src/list/is.mjs';
 export function semantic_is(parsed, context) {
@@ -16,5 +18,5 @@ export function semantic_is(parsed, context) {
     if (!list_is(p2)) {
         return false;
     }
-    semantic_context_subset(p0, p2);
+    semantic_context_subset(context, p0, p2);
 }
