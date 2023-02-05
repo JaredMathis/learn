@@ -20,4 +20,5 @@ export function semantic_is(parsed, context) {
         return false;
     }
     semantic_context_subset(context, list_single(p0), list_single(p2));
+    return true;
 }
