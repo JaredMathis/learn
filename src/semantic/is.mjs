@@ -32,7 +32,7 @@ export function semantic_is(parsed, context) {
         })) {
     } else {
         let inner = {};
-        if (semantic_binary(parsed, ['not'], inner)) {
+        if (semantic_binary(p2, ['not'], inner)) {
             list_add(supersets, inner.p0 + ' ' + inner.p1);
         }
     }
