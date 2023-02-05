@@ -21,15 +21,12 @@ export function semantic_is(parsed, context) {
     if (!semantic_and(p0, part => {
             list_add(subsets, list_single(part));
         })) {
-        subsets = [p0];
+        subsets = [list_single(p0)];
     }
     let supersets = [];
     if (p2.length === 1) {
-        p2 = list_single(p2);
-        list_add(supersets, p2);
-        semantic_context_subset_for_each(context, subsets, p2);
-    }
-    if (semantic_and(p2, part => {
+        list_add(supersets, list_single(p2));
+    } else if (semantic_and(p2, part => {
             list_add(supersets, list_single(part));
         })) {
     }
