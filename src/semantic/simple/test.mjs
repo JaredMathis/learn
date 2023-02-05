@@ -6,7 +6,7 @@ import { semantic_context_subset } from './../context/subset.mjs';
 export function semantic_simple_test() {
     let a = 'jared';
     let b = 'human';
-    let parsed = semantic_parse(`( jared ) is ( human )`);
+    let parsed = semantic_parse(`( ${ a } ) is ( ${ b } )`);
     let actual = {};
     assert(semantic_is(parsed, actual));
     let expected = {};
