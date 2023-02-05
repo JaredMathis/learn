@@ -1,3 +1,4 @@
+import { semantic_superset_not } from './superset/not.mjs';
 import { semantic_binary } from './binary.mjs';
 import { for_each } from './../../node_modules/m00/src/for/each.mjs';
 import { semantic_context_subset_for_each } from './context/subset/for/each.mjs';
@@ -33,7 +34,7 @@ export function semantic_is(parsed, context) {
     } else {
         let inner = {};
         if (semantic_binary(p2, ['not'], inner)) {
-            list_add(supersets, inner.p0 + '(' + inner.p1 + ")");
+            list_add(supersets, semantic_superset_not(inner.p1));
         }
     }
     if (supersets.length) {
