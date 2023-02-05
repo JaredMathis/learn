@@ -9,6 +9,6 @@ export function semantic_simple_4_test() {
     let actual = {};
     assert(semantic_is(parsed, actual));
     let expected = {};
-    semantic_context_subset(expected,  'jared', semantic_superset_not('lame'));
+    semantic_context_subset(expected, 'jared', semantic_superset_not('lame'));
     assert(json_equal(actual, expected));
 }
