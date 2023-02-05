@@ -19,11 +19,10 @@ export function semantic_is(parsed, context) {
     let {p0, p2} = inner;
     let subjects = [];
     if (!semantic_and(p0, part => {
-            list_add(list_single(part));
+            list_add(subjects, list_single(part));
         })) {
         subjects = [p0];
     }
-    p0 = list_single(p0);
     if (p2.length === 1) {
         p2 = list_single(p2);
         for_each(subjects, s => {

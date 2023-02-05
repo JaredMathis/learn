@@ -7,7 +7,7 @@ export function semantic_and(parsed, if_parse) {
             '0',
             '2'
         ], i => {
-            if_parse(inner['p' + i]);
+            if_parse(context['p' + i]);
         });
         return true;
     }
