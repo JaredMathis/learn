@@ -7,7 +7,6 @@ import { defined_is } from './../../node_modules/m00/src/defined/is.mjs';
 import { arguments_assert } from './../../node_modules/m00/src/arguments/assert.mjs';
 import { list_is } from './../../node_modules/m00/src/list/is.mjs';
 import { semantic_ternary } from './ternary.mjs';
-import { for_each } from 'm00/src/for/each.mjs';
 export function semantic_is(parsed, context) {
     arguments_assert(arguments, list_is, defined_is);
     let inner = {};
