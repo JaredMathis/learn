@@ -4,7 +4,7 @@ import { defined_is } from './../../node_modules/m00/src/defined/is.mjs';
 import { list_is } from './../../node_modules/m00/src/list/is.mjs';
 import { merge } from './../../node_modules/m00/src/merge.mjs';
 export function semantic_ternary(parsed, middle, context) {
-    arguments_assert(arguments, list_is, string_is, defined_is);
+    arguments_assert(arguments, list_is, list_is, defined_is);
     if (parsed.length !== 3) {
         return false;
     }
@@ -12,7 +12,7 @@ export function semantic_ternary(parsed, middle, context) {
     if (!list_is(p0)) {
         return false;
     }
-    if (parsed[1] !== middle) {
+    if (!middle.includes(parsed[1])) {
         return false;
     }
     let p2 = parsed[2];
