@@ -12,4 +12,5 @@ export function semantic_context_subset(context, subset, superset) {
         property_initialize(context, s, {});
     });
     context[superset][subset] = true;
+    context_consistency_check(context);
 }
