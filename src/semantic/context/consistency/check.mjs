@@ -15,7 +15,6 @@ export function semantic_context_consistency_check(context) {
             g.setEdge(subset_name, superset_name);
         });
     });
-    console.log(g)
     let distances = graphlib.alg.dijkstraAll(g);
     console.log(distances)
     let errors = [];
