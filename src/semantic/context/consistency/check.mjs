@@ -26,7 +26,6 @@ export function semantic_context_consistency_check(context) {
             let d = distances[subset_name];
             if (isFinite(d[superset_name].distance) && d[superset_negated_name] && isFinite(d[superset_negated_name].distance)) {
                 let error_message = `${subset_name} cannot be both ${superset_name} and ${superset_negated_name}`;
-                console.log(error_message)
                 list_add(errors, error_message)
             }
         })
