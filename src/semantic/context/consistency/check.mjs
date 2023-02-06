@@ -16,15 +16,12 @@ export function semantic_context_consistency_check(context) {
         });
     });
     let distances = graphlib.alg.dijkstraAll(g);
-    console.log(distances)
     let errors = [];
     for_each_key(context, superset_name => {
         if (superset_name.startsWith('not (')) {
             return;
         }
-
         let superset_negated_name = semantic_superset_not(superset_name);
-
         for_each_key(context, subset_name => {
             let d = distances[subset_name];
             if (isFinite(d[superset_name].distance) && d[superset_negated_name] && isFinite(d[superset_negated_name].distance)) {
