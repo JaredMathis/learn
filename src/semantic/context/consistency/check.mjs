@@ -7,29 +7,30 @@ import { list_single } from './../../../../node_modules/m00/src/list/single.mjs'
 import { property_has } from './../../../../node_modules/m00/src/property/has.mjs';
 import { semantic_parse } from './../../parse.mjs';
 import graphlib from '@dagrejs/graphlib';
+import { semantic_superset_not } from '../../superset/not.mjs';
 export function semantic_context_consistency_check(context) {
-    var directed = new graphlib.Graph();
+    var g = new graphlib.Graph();
     for_each(context, (superset, superset_name) => {
         for_each_key(superset, subset_name => {
-            directed.edge(subset_name, superset_name);
+            g.setEdge(subset_name, superset_name);
         });
     });
     let distances = graphlib.alg.dijkstraAll(g);
     console.log(distances);
     let errors = [];
-    for_each_key(context, set_name => {
-        if (set_name.startsWith('not (')) {
-            let parsed = semantic_parse(set_name);
-            assert(parsed.length === 2);
-            let unnegated = list_single(parsed[1]);
-            if (property_has(context, unnegated)) {
-                for_each_key(context[set_name], subset_name => {
-                    if (context[unnegated][subset_name]) {
-                        list_add(errors, `${ subset_name } cannot be ${ unnegated } and not ${ unnegated } at the same time`);
-                    }
-                });
-            }
+    for_each_key(context, superset_name => {
+        if (superset_name.startsWith('not (')) {
+            return;
         }
+
+        let superset_negated_name = semantic_superset_not(superset_name);
+
+        for_each_key(context, subset_name => {
+            let d = distances[subset_name];
+            if (isFinite(d[superset_name].distance) && d[superset_negated_name] && (d[superset_negated_name].distance)) {
+                list_add(errors, `${subset_name} cannot be both ${superset_name} and ${superset_negated_name}`)
+            }
+        })
     });
     return errors;
 }
