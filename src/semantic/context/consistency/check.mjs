@@ -16,7 +16,6 @@ export function semantic_context_consistency_check(context) {
         });
     });
     let distances = graphlib.alg.dijkstraAll(g);
-    console.log(distances);
     let errors = [];
     for_each_key(context, superset_name => {
         if (superset_name.startsWith('not (')) {
@@ -28,7 +27,9 @@ export function semantic_context_consistency_check(context) {
         for_each_key(context, subset_name => {
             let d = distances[subset_name];
             if (isFinite(d[superset_name].distance) && d[superset_negated_name] && (d[superset_negated_name].distance)) {
-                list_add(errors, `${subset_name} cannot be both ${superset_name} and ${superset_negated_name}`)
+                let error_message = `${subset_name} cannot be both ${superset_name} and ${superset_negated_name}`;
+                console.log(error_message)
+                list_add(errors, error_message)
             }
         })
     });
