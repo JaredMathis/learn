@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@dagrejs/graphlib": "^2.1.4",
     "m00": "^0.0.39",
     "paren": "^1.2.0"
   },
