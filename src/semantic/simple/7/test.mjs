@@ -6,5 +6,6 @@ export function semantic_simple_7_test() {
     assert(semantic_parse_meaning(`( jordan ) is ( sexy )`, context));
     assert(semantic_parse_meaning(`( sexy ) is ( attractive )`, context));
     assert(semantic_parse_meaning(`( attractive ) is ( good )`, context));
-    assert_throws(() => semantic_parse_meaning(`( jordan ) is ( not ( attractive ) )`, context));
+    assert(semantic_parse_meaning(`( good ) is ( not ( bad ) )`, context));
+    assert_throws(() => semantic_parse_meaning(`( jordan ) is ( bad )`, context));
 }
