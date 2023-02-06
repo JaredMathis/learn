@@ -1,3 +1,4 @@
+import { semantic_context_consistency_check } from './consistency/check.mjs';
 import { for_each } from './../../../node_modules/m00/src/for/each.mjs';
 import { property_initialize } from './../../../node_modules/m00/src/property/initialize.mjs';
 import { arguments_assert } from './../../../node_modules/m00/src/arguments/assert.mjs';
@@ -12,5 +13,5 @@ export function semantic_context_subset(context, subset, superset) {
         property_initialize(context, s, {});
     });
     context[superset][subset] = true;
-    context_consistency_check(context);
+    semantic_context_consistency_check(context);
 }
