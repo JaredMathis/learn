@@ -5,5 +5,5 @@ export function semantic_simple_6_test() {
     let context = {};
     assert(semantic_parse_meaning(`( jared ) is ( good )`, context));
     assert(semantic_parse_meaning(`( good ) is ( not ( bad ) )`, context));
-    assert_throws(() => semantic_parse_meaning(`( jared ) is ( bad )`), context);
+    assert_throws(() => semantic_parse_meaning(`( jared ) is ( bad )`, context));
 }
