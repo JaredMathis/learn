@@ -16,6 +16,7 @@ export function semantic_context_consistency_check(context) {
         });
     });
     let distances = graphlib.alg.dijkstraAll(g);
+    console.log(distances)
     let errors = [];
     for_each_key(context, superset_name => {
         if (superset_name.startsWith('not (')) {
