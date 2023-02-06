@@ -13,5 +13,8 @@ export function semantic_context_subset(context, subset, superset) {
         property_initialize(context, s, {});
     });
     context[superset][subset] = true;
-    semantic_context_consistency_check(context);
+    let errors = semantic_context_consistency_check(context);
+    if (errors.length) {
+        throw new Error(errors.join('; '))
+    }
 }
